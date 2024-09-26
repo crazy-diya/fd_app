@@ -23,13 +23,13 @@ class _NotificationViewState extends State<NotificationView> {
         padding: const EdgeInsets.only(top: 30, left: 16, bottom: 0, right: 16),
         child: Stack(
           children: [
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: const Align(
-                alignment: Alignment.topLeft,
-                child: Icon(
+            Align(
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
                   Icons.arrow_back_sharp,
                   color: AppColors.colorBlack,
                   size: 32,
