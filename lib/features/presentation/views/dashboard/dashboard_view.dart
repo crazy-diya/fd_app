@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/services/dependency_injection.dart';
 import '../../../../core/services/secure_storage.dart';
@@ -110,66 +111,74 @@ class _DashboardViewState extends State<DashboardView> {
                             ? Expanded(
                                 child: ListView.builder(
                                   itemCount: marketNewsList!.length,
-                                  itemBuilder: (context, index) => Container(
-                                    padding: EdgeInsets.symmetric(vertical: 16.w),
-                                    child: Row(
-                                      children: [
-                                        Image.network(
-                                          marketNewsList![index].image!,
-                                          height: 100.w,
-                                          width: 100.w,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        SizedBox(
-                                          width: 16.w,
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    marketNewsList![index].source!.toUpperCase(),
-                                                    style: GoogleFonts.rubik(
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 12.sp,
-                                                      color: AppColors.fontColorWhite.withOpacity(0.7),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    marketNewsList![index]
-                                                        .datetime!
-                                                        .toInt()
-                                                        .convertTimestampToData()
-                                                        .toUpperCase(),
-                                                    style: GoogleFonts.rubik(
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 12.sp,
-                                                      color: AppColors.fontColorWhite.withOpacity(0.7),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 8.w,
-                                              ),
-                                              Text(
-                                                marketNewsList![index].headline!,
-                                                textAlign: TextAlign.start,
-                                                maxLines: 3,
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 20.sp,
-                                                  color: AppColors.fontColorWhite,
-                                                  height: 1.sp,
-                                                ),
-                                              ),
-                                            ],
+                                  itemBuilder: (context, index) => InkWell(
+                                    onTap: () {
+                                      launchUrl(
+                                        Uri.parse(marketNewsList![index].url!),
+                                        mode: LaunchMode.externalApplication,
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(vertical: 16.w),
+                                      child: Row(
+                                        children: [
+                                          Image.network(
+                                            marketNewsList![index].image!,
+                                            height: 100.w,
+                                            width: 100.w,
+                                            fit: BoxFit.cover,
                                           ),
-                                        ),
-                                      ],
+                                          SizedBox(
+                                            width: 16.w,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      marketNewsList![index].source!.toUpperCase(),
+                                                      style: GoogleFonts.rubik(
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: 12.sp,
+                                                        color: AppColors.fontColorWhite.withOpacity(0.7),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      marketNewsList![index]
+                                                          .datetime!
+                                                          .toInt()
+                                                          .convertTimestampToData()
+                                                          .toUpperCase(),
+                                                      style: GoogleFonts.rubik(
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: 12.sp,
+                                                        color: AppColors.fontColorWhite.withOpacity(0.7),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 8.w,
+                                                ),
+                                                Text(
+                                                  marketNewsList![index].headline!,
+                                                  textAlign: TextAlign.start,
+                                                  maxLines: 3,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 20.sp,
+                                                    color: AppColors.fontColorWhite,
+                                                    height: 1.sp,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
