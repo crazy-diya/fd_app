@@ -68,6 +68,8 @@ class APIHelper {
           responseError: error.message!,
         ),
       );
+    } on Exception {
+      throw ServerException();
     }
   }
 }
