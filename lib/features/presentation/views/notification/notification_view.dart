@@ -18,95 +18,97 @@ class NotificationView extends StatefulWidget {
 class _NotificationViewState extends State<NotificationView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 16, bottom: 10, right: 16),
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: const Icon(
-                  Icons.arrow_back_sharp,
-                  color: AppColors.colorBlack,
-                  size: 32,
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.only(top: 10, left: 16, bottom: 10, right: 16),
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(
+                    Icons.arrow_back_sharp,
+                    color: AppColors.colorBlack,
+                    size: 32,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    AppImages.notificationIcon,
-                    width: 98.w,
-                    height: 98.w,
-                  ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                  Text(
-                    AppStrings.notificationViewTitle,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 24.sp,
-                      color: AppColors.notificationTitleFontColor,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.notificationIcon,
+                      width: 98.w,
+                      height: 98.w,
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                  Text(
-                    AppStrings.notificationViewDesc,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16.sp,
-                      color: AppColors.fontColorGray,
+                    SizedBox(
+                      height: 16.h,
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+                    Text(
+                      AppStrings.notificationViewTitle,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 24.sp,
+                        color: AppColors.notificationTitleFontColor,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+                    Text(
+                      AppStrings.notificationViewDesc,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16.sp,
+                        color: AppColors.fontColorGray,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  height: 48,
-                  child: FilledButton(
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(
-                        AppColors.floatingActionButtonColor,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SizedBox(
+                    height: 48,
+                    child: FilledButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(
+                          AppColors.floatingActionButtonColor,
+                        ),
+                      ),
+                      onPressed: () async {
+                        await requestNotificationPermissions(context);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            AppStrings.continueButton,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16.sp,
+                              color: AppColors.fontButtonColor,
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                    onPressed: () async {
-                      await requestNotificationPermissions(context);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          AppStrings.continueButton,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16.sp,
-                            color: AppColors.fontButtonColor,
-                          ),
-                        )
-                      ],
-                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
