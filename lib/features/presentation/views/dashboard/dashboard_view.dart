@@ -97,11 +97,6 @@ class _DashboardViewState extends State<DashboardView> {
                             fontSize: 32.sp,
                             color: AppColors.fontColorWhite,
                           ),
-                          // style: TextStyle(
-                          //   fontWeight: FontWeight.w900,
-                          //   fontSize: 32.sp,
-                          //   color: AppColors.fontColorWhite,
-                          // ),
                           textAlign: TextAlign.start,
                         ),
                         SizedBox(
