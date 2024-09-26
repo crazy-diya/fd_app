@@ -20,7 +20,7 @@ class _NotificationViewState extends State<NotificationView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 16, bottom: 0, right: 16),
+        padding: const EdgeInsets.only(top: 30, left: 16, bottom: 10, right: 16),
         child: Stack(
           children: [
             Align(
@@ -74,31 +74,34 @@ class _NotificationViewState extends State<NotificationView> {
                 ],
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                height: 48,
-                child: FilledButton(
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(
-                      AppColors.floatingActionButtonColor,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  height: 48,
+                  child: FilledButton(
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        AppColors.floatingActionButtonColor,
+                      ),
                     ),
-                  ),
-                  onPressed: () async {
-                    await requestNotificationPermissions(context);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        AppStrings.continueButton,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16.sp,
-                          color: AppColors.fontButtonColor,
-                        ),
-                      )
-                    ],
+                    onPressed: () async {
+                      await requestNotificationPermissions(context);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          AppStrings.continueButton,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.sp,
+                            color: AppColors.fontButtonColor,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
