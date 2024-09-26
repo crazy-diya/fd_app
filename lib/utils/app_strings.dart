@@ -8,4 +8,5 @@ class AppStrings{
   static const String notificationViewTitle = "Get the most out of Blott ✅";
   static const String notificationViewDesc = "Allow notifications to stay in the loop with your payments, requests and groups.";
   static const String hey = "Hey";
+  static const String somethingWentWrong = "Something went wrong. Please try again later.";
 }

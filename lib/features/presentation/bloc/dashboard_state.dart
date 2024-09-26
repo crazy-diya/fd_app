@@ -15,5 +15,8 @@ class ServerFailureState extends DashboardState {}
 
 class ConnectionFailureState extends DashboardState {}
 
+class DashboardSuccessState extends DashboardState {
+  final List<MarketNewsResponseModel>? marketNewsList;
 
-class DashboardSuccessState extends DashboardState {}
+  DashboardSuccessState({required this.marketNewsList});
+}

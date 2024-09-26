@@ -55,16 +55,19 @@ class _UserDetailsViewState extends State<UserDetailsView> {
                 ),
                 TextFormField(
                   controller: _firstNameController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: AppStrings.firstNameHint,
-                    hintStyle: TextStyle(
-                      color: AppColors.textFieldHint,
-                    ),
+                    hintStyle: TextStyle(color: AppColors.textFieldHint, fontSize: 20.sp, fontWeight: FontWeight.w400),
                   ),
                   onChanged: (value) {
                     _formKey.currentState?.validate();
                     setState(() {});
                   },
+                  style: TextStyle(
+                    color: AppColors.textFieldTextColor,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your First Name';
@@ -77,11 +80,18 @@ class _UserDetailsViewState extends State<UserDetailsView> {
                 ),
                 TextFormField(
                   controller: _lastNameController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: AppStrings.lastNameHint,
                     hintStyle: TextStyle(
                       color: AppColors.textFieldHint,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w400,
                     ),
+                  ),
+                  style: TextStyle(
+                    color: AppColors.textFieldTextColor,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w400,
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -108,10 +118,11 @@ class _UserDetailsViewState extends State<UserDetailsView> {
             backgroundColor: (_formKey.currentState?.validate() == true)
                 ? AppColors.floatingActionButtonColor
                 : AppColors.floatingActionButtonColor.withOpacity(.2),
-            radius: 30.w,
-            child: const Icon(
+            radius: 26.w,
+            child:  Icon(
               Icons.navigate_next_rounded,
               color: AppColors.fontColorWhite,
+              size: 32.w,
             ),
           ),
         ),

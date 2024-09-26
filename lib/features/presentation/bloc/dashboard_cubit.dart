@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../error/failures.dart';
+import '../../data/model/market_news_response_model.dart';
 import '../../domain/usecases/dashboard_usecase.dart';
 
 part 'dashboard_state.dart';
@@ -12,7 +13,7 @@ class DashboardCubit extends Cubit<DashboardState> {
   DashboardCubit({required this.dashboard}) : super(DashboardInitial());
 
   Future<dynamic> getDashBoardData() async {
-     emit(ApiLoadingState());
+    emit(ApiLoadingState());
 
     final result = await dashboard({"category": "general"});
 
@@ -30,8 +31,7 @@ class DashboardCubit extends Cubit<DashboardState> {
           }
         },
         (r) {
-          print(r[1].headline);
-          return DashboardSuccessState();
+          return DashboardSuccessState(marketNewsList: r);
         },
       ),
     );
