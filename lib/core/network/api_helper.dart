@@ -60,7 +60,23 @@ class APIHelper {
         NetworkConfig.getNetworkConfig(),
         queryParameters: param,
       );
-      return response;
+      if (response.statusCode == 200) {
+        return response;
+      } else if (response.statusCode == 400) {
+        throw APIFailException(
+          errorResponseModel: ErrorResponseEntity(
+            responseCode: response.statusCode.toString(),
+            responseError: response.statusMessage!,
+          ),
+        );
+      } else if (response.statusCode == 500) {
+        throw ServerException(
+          errorResponse: ErrorResponseEntity(
+            responseCode: response.statusCode.toString(),
+            responseError: response.statusMessage!,
+          ),
+        );
+      }
     } on DioException catch (error) {
       throw DioExceptionError(
         errorResponse: ErrorResponseEntity(
